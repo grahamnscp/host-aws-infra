@@ -1,0 +1,15 @@
+---
+
+- hosts: infra_host
+  roles:
+  - check-host
+  - sshd-keepalive
+  - set-hostname
+  - sshd-pwdauth
+  - set-centos-pwd
+  - set-kernel-parameters
+  - install-packages
+  - kube-repo
+#  - kube-yum-versionlock
+  - kubectl-cli-install
+

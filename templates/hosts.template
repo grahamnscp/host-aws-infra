@@ -1,0 +1,25 @@
+[all:vars]
+
+# Ansible Options
+ansible_user=centos
+ansible_port=22
+ansible_become=yes
+ansible_ssh_private_key_file="~/.ssh/mysshkey"
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+timeout=120
+deprecation_warnings=False
+#~/.ansible.cfg:[ssh_connection]\scp_if_ssh=True
+
+# Varables
+centos_password=##CENTOS_PASSWORD##
+
+# Infra host variables
+private_subnet=##NTP_PRIVATE_SUBNET##
+name_prefix=##SUBDOMAIN##
+route53_domainname=##BASEDOMAIN##
+dockerhub_user=##DOCKERHUB_USER##
+kubernetes_package_version=##KUBERNETES_PACKAGE_VERSION##
+
+# Instance Groups
+[infra_host]
+infra ansible_host=##INFRA_IP##  fqdn=infra.##DOMAIN##

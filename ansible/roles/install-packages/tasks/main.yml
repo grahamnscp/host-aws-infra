@@ -1,0 +1,26 @@
+---
+
+- name: "Install epel-release"
+  yum:
+    name: epel-release
+    update_cache: yes
+    state: installed
+
+- name: "Install node os packages.."
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - vim
+    - wget
+    - curl
+    - bind-utils
+    - jq
+    - transmission-cli
+    - sysstat
+    - strace
+    - iotop
+    - lsof
+    - qemu-img
+    - libselinux-python
+    - screen

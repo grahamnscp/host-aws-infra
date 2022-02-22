@@ -1,0 +1,60 @@
+# Params.sh
+
+#########################
+## Terraform variables ##
+#########################
+
+NAME_PREFIX=test
+
+# existing route53 hosted zone:
+ROUTE53_DOMAINNAME=example.com
+ROUTE53_ZONE_ID=XXXXXXXXXXXXXXXXXXXX
+
+# tags:
+TAG_OWNER="me"
+TAG_PURPOSE="beta testing"
+TAG_ENDDATE="02202022"
+
+# provider:
+AWS_REGION="us-west-1"
+AWS_KEY_PAIR_NAME="myawssshkeyname"
+
+# security group ips:
+IP_CIDR_ME="XXX.XXX.XXX.XXX\/32"
+IP_CIDR_OTHER="XXX.XXX.XXX.XXX\/32"
+
+# instances:
+#  aws ec2 describe-images --owners aws-marketplace --filters Name=product-code,Values=aw0evgkw8e5c1q413zgy5pjce --query 'Images[*].[CreationDate,Name,ImageId]' --filters "Name=name,Values=CentOS Linux 7*" --region us-west-1 --output table | sort -r
+#  us-west-1 - CentOS Linux release 7.9.2009 (Core) ref: https://wiki.centos.org/Cloud/AWS
+#
+AWS_AMI="ami-08d2d8b00f270d03b"
+#
+#r5.4xlarge	16 cpu	128G mem
+#r5.8xlarge	32 cpu	256G mem
+#r5.12xlarge	48 cpu	384G mem
+#r5.16xlarge	64 cpu	512G mem
+#
+#t2.medium	2 cpm	4G mem
+#t2.large	2 cpu   8G mem
+#t2.xlarge      4 cpu   16G mem
+#t2.2xlarge     8 cpu   32G mem
+AWS_INSTANCE_TYPE_INFRA=t2.xlarge
+INFRA_ROOT_VOLUME_SIZE=100
+
+# vpc:
+VPCCIDRBLOCK="172.12.0.0\/16"
+SUBNETCIDRBLOCK="172.12.1.0\/24"
+
+
+#######################
+## Ansible Variables ##
+#######################
+DOCKERHUB_USER=mydockerhubusername
+BIND_DOCKER_TAG=$NAME_PREFIX
+CENTOS_PASSWORD=centospasswordvaluehere
+# Extra volume device names, note names can change with different instance types
+NTP_PRIVATE_SUBNET="172.12.1.0"
+# https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64/repodata/filelists.xml
+#KUBERNETES_PACKAGE_VERSION=1.18.5-0
+KUBERNETES_PACKAGE_VERSION=1.20.8-0
+
